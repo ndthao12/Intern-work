@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Categories from './Categories';
 
 function Category(props) {
-    const { onAdd, cartItems } = props;
+    const { onAdd } = props;
     const [data, setData] = useState(Categories);
     const formatter = new Intl.NumberFormat('vi-VN', {
         style: 'currency',

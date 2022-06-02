@@ -40,7 +40,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Header countCartItem={cartItems.length} />}>
-          <Route index element={<Category onAdd={onAdd} cartItems={cartItems} />} />
+          <Route index element={<Category onAdd={onAdd} />} />
           <Route path="cart" element={<Cart onAdd={onAdd} onRemove={onRemove} onClear={onClear} onClearAll={onClearAll} cartItems={cartItems} countCartItem={cartItems.length} />} />
         </Route>
       </Routes>
