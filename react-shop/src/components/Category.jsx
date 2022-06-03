@@ -8,6 +8,10 @@ function Category(props) {
         style: 'currency',
         currency: 'VND',
     })
+    const alertMessage = (product) => {
+        alert(product.name + " Đã được thêm vào giỏ hàng")
+    }
+
     return (
         <main className='mt-5'>
             <div style={{ paddingBottom: "30px" }}></div>
@@ -26,7 +30,7 @@ function Category(props) {
                                                 <div className="card-body">
                                                     <p className="card-text">{name}</p>
                                                     <h4 className="card-title">{formatter.format(price)}</h4>
-                                                    <button onClick={() => onAdd(product)} className='btn btn-info'>Thêm vào giỏ hàng</button>
+                                                    <button onClick={() => { onAdd(product); alertMessage(product) }} className='btn btn-info'>Thêm vào giỏ hàng</button>
                                                 </div>
                                             </div>
                                         </div>
