@@ -3,14 +3,19 @@ import Categories from './Categories';
 
 function Category(props) {
     const { onAdd } = props;
-    const [data, setData] = useState(Categories);
+    const data = Categories;
+    const [show, setShow] = useState([]);
+
     const formatter = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
-    })
+    });
+
     const alertMessage = (product) => {
-        alert(product.name + " Đã được thêm vào giỏ hàng")
-    }
+        const newShow = [...show];
+        newShow[product.id] = 1;
+        setShow(newShow);
+    };
 
     return (
         <main className='mt-5'>
@@ -23,19 +28,17 @@ function Category(props) {
                             {data.map((product) => {
                                 const { id, name, price, image } = product;
                                 return (
-                                    <>
-                                        <div className="col-md-4 mb-4" key={id}>
-                                            <div className="card">
-                                                <img className="card-img-top" src={image} alt="trang-phuc-nam" />
-                                                <div className="card-body">
-                                                    <p className="card-text">{name}</p>
-                                                    <h4 className="card-title">{formatter.format(price)}</h4>
-                                                    <button onClick={() => { onAdd(product); alertMessage(product) }} className='btn btn-info'>Thêm vào giỏ hàng</button>
-                                                </div>
+                                    <div className="col-md-4 mb-4" key={id}>
+                                        <div className="card">
+                                            <img className="card-img-top" src={image} alt="trang-phuc-nam" />
+                                            <div className="card-body">
+                                                <p className="card-text">{name}</p>
+                                                <h4 className="card-title">{formatter.format(price)}</h4>
+                                                <button onClick={() => { onAdd(product); alertMessage(product) }} className='btn btn-info mb-2'>Thêm vào giỏ hàng</button>
+                                                {show[product.id] === 1 && <p className='text-success mt-2'>{product.name} Đã được thêm vào giỏ hàng!</p>}
                                             </div>
                                         </div>
-
-                                    </>
+                                    </div>
                                 )
                             })}
                         </div>
