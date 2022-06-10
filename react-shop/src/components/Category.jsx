@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import Categories from './Categories';
 
 function Category(props) {
-    const { onAdd } = props;
-    const data = Categories;
+    const { onAdd, data } = props;
     const [show, setShow] = useState([]);
 
     const formatter = new Intl.NumberFormat('vi-VN', {

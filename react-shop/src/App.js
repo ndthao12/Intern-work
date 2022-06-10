@@ -4,6 +4,8 @@ import './App.css';
 import Cart from './components/Cart';
 import Category from './components/Category';
 import Header from './components/Header';
+import Categories from './components/Categories';
+import PostList from './components/PostList';
 
 function App() {
   const [cartItems, setCartItem] = useState(() => {
@@ -51,12 +53,19 @@ function App() {
     localStorage.setItem('CART', JSON.stringify(newCartItems));
   }
 
+  const [query, setQuery] = useState('');
+
+  const search = (data) => {
+    return data.filter((item) => item.name.toLowerCase().includes(query));
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header countCartItem={cartItems.length} />}>
-          <Route index element={<Category onAdd={onAdd} />} />
+        <Route path="/" element={<Header countCartItem={cartItems.length} setQuery={setQuery} />}>
+          <Route index element={<Category onAdd={onAdd} data={search(Categories)} />} />
           <Route path="cart" element={<Cart onAdd={onAdd} onRemove={onRemove} onClear={onClear} onClearAll={onClearAll} cartItems={cartItems} countCartItem={cartItems.length} />} />
+          <Route path="list" element={<PostList />} />
         </Route>
       </Routes>
     </BrowserRouter>

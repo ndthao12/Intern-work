@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Link } from "react-router-dom";
 
 function Header(props) {
-    const { countCartItem } = props;
+    const { countCartItem, setQuery } = props;
     return (
         <div>
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -18,11 +18,11 @@ function Header(props) {
                             ) : ('')}
                         </li>
                         <li className="nav-item">
-                            <Link className='nav-link' to="/">Products</Link>
+                            <Link className='nav-link' to="/list">List</Link>
                         </li>
                     </ul>
                     <form className="form-inline">
-                        <input className="form-control mr-sm-2" type="text" placeholder="Search" />
+                        <input className="form-control mr-sm-2" type="text" placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
                         <button className="btn btn-success" type="submit">Search</button>
                     </form>
                 </div>
